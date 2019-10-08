@@ -1,8 +1,12 @@
 package dk.easj.anbo.swipegesture;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -17,12 +21,13 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gestureDetector = new GestureDetector(this, this);
+       // getWindow().setExitTransition(new Explode());
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTuch: " + event);
-        boolean eventHandlingFinished = true;
+        // Log.d(TAG, "onTuch: " + event);
+        // boolean eventHandlingFinished = true;
         //return eventHandlingFinished;
         return gestureDetector.onTouchEvent(event);
     }
@@ -70,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         if (leftSwipe) {
             Intent intent = new Intent(this, AnotherActivity.class);
             startActivity(intent);
+            //ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this);
+            //Bundle options = activityOptionsCompat.toBundle();
+            //startActivity(intent, options);
+
         }
         return true; // done
     }

@@ -17,5 +17,10 @@
         android:layout_height="wrap_content"
         android:text="Swipe or scroll right to go back" />
 
+    <TextView
+        android:id="@+id/anotherMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
 
