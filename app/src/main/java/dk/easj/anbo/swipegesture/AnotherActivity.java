@@ -1,6 +1,7 @@
 package dk.easj.anbo.swipegesture;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -21,6 +22,12 @@ public class AnotherActivity extends AppCompatActivity {
                 return DoIt(e1, e2);
             }
 
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+                                    float distanceY) {
+                return DoIt(e1, e2);
+            }
+
             private boolean DoIt(MotionEvent e1, MotionEvent e2) {
                 TextView messageView = findViewById(R.id.anotherMessageTextView);
                 float horizontalDistance = Math.abs(e1.getX() - e2.getX());
@@ -31,24 +38,19 @@ public class AnotherActivity extends AppCompatActivity {
                     } else {
                         messageView.setText("Left");
                     }
+                    boolean leftMovement = e1.getX() < e2.getX();
+                    if (leftMovement) {
+                        finish();
+                    }
                 } else {
                     if (e1.getY() < e2.getY()) {
                         messageView.setText("Down");
                     } else {
                         messageView.setText("Up");
                     }
-                    boolean leftMovement = e1.getX() < e2.getX();
-                    if (leftMovement) {
-                        //finish();
-                    }
                 }
-                return true;
-            }
 
-            @Override
-            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-                                    float distanceY) {
-                return DoIt(e1, e2);
+                return true;
             }
         });
     }
