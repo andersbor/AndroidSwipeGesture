@@ -49,7 +49,6 @@ public class AnotherActivity extends AppCompatActivity {
                         messageView.setText("Up");
                     }
                 }
-
                 return true;
             }
         });
